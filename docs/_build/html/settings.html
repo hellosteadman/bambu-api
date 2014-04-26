@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Settings &mdash; Bambu API 0.5.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bambu API 0.5.2 documentation" href="index.html" />
+    <link rel="next" title="Throttling requests" href="throttling.html" />
+    <link rel="prev" title="Defining and registering endpoints" href="options.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="throttling.html" title="Throttling requests"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="options.html" title="Defining and registering endpoints"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="settings">
+<h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">API_AUTH_REALM</span></tt>:</dt>
+<dd>The HTTP authentication realm (default is &#8216;Restricted access&#8217;)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_LOGIN_URL</span></tt>:</dt>
+<dd>The URL to redirect anonymous API users to (defaults to the result of reversing the URL name &#8216;login&#8217;)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_AUTH_ALLOW_REGISTRATION</span></tt>:</dt>
+<dd>When <tt class="docutils literal"><span class="pre">True</span></tt>, this allows users to sign up via the API thus creating an <tt class="docutils literal"><span class="pre">auth.User</span></tt> object
+(defaults to <tt class="docutils literal"><span class="pre">False</span></tt>)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_ALLOW_USER_MANAGEMENT</span></tt>:</dt>
+<dd>When <tt class="docutils literal"><span class="pre">True</span></tt>, allows users to edit their login details via the API (defaults to <tt class="docutils literal"><span class="pre">False</span></tt>)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_ALLOW_GROUP_MANAGEMENT</span></tt>:</dt>
+<dd>When <tt class="docutils literal"><span class="pre">True</span></tt>, allows authenticated users to create, read, update and delete <tt class="docutils literal"><span class="pre">auth.Group</span></tt> objects
+(defaults to <tt class="docutils literal"><span class="pre">False</span></tt>)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_CACHE_VARY_HEADERS</span></tt>:</dt>
+<dd>Which HTTP  headers are used to decide whether to cache content or not. Defaults to &#8216;Cookie&#8217;</dd>
+<dt><tt class="docutils literal"><span class="pre">API_THROTTLE_REQUESTS</span></tt>:</dt>
+<dd>The number of requests permitted in X minutes (where X is the value of <tt class="docutils literal"><span class="pre">API_THROTTLE_MINUTES</span></tt>).
+The default is 60.</dd>
+<dt><tt class="docutils literal"><span class="pre">API_THROTTLE_MINUTES</span></tt>:</dt>
+<dd>The number of minutes that defines how many requests to allow before throttling. The default
+is 1.</dd>
+<dt><tt class="docutils literal"><span class="pre">API_REQUEST_LOGGER</span></tt>:</dt>
+<dd>The default request logger to use (the means by which throttling occurs). Specify the fully
+qualified module and class name of the logger. Defaults to
+&#8216;bambu.api.requestlogging.DatabaseRequestLogger&#8217;</dd>
+</dl>
+<div class="section" id="redis-specific-settings">
+<h2>Redis-specific settings<a class="headerlink" href="#redis-specific-settings" title="Permalink to this headline">¶</a></h2>
+<p>If using Redis to log the number of requests by a specific app for throttling, you can configure Bambu
+API to use a specific host and database:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">API_REDIS_HOST</span></tt>:</dt>
+<dd>The Redis host to use (defaults to &#8216;localhost&#8217;)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_REDIS_PORT</span></tt>:</dt>
+<dd>The Redis port to use (defaults to 6379)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_REDIS_DB</span></tt>:</dt>
+<dd>The index of the Redis database to use (defaults to 0)</dd>
+<dt><tt class="docutils literal"><span class="pre">API_REDIS_PASSWORD</span></tt></dt>
+<dd>The password for the Redis database (defaults to &#8216;&#8217;)</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Settings</a><ul>
+<li><a class="reference internal" href="#redis-specific-settings">Redis-specific settings</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="options.html"
+                        title="previous chapter">Defining and registering endpoints</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="throttling.html"
+                        title="next chapter">Throttling requests</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/settings.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="throttling.html" title="Throttling requests"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="options.html" title="Defining and registering endpoints"
+             >previous</a> |</li>
+        <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Steadman.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

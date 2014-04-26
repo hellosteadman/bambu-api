@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Defining and registering endpoints &mdash; Bambu API 0.5.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bambu API 0.5.2 documentation" href="index.html" />
+    <link rel="next" title="Settings" href="settings.html" />
+    <link rel="prev" title="Bambu API" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="settings.html" title="Settings"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Bambu API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-bambu.api.options">
+<span id="defining-and-registering-endpoints"></span><h1>Defining and registering endpoints<a class="headerlink" href="#module-bambu.api.options" title="Permalink to this headline">¶</a></h1>
+<p>An API consists of a number of endpoints. Typically a model in a database has one API with two endpoints.
+The API handles the CRUD operations for that model. The first endpoint is used to list a model&#8217;s objects, the
+second returns a specific object by ID.</p>
+<p>The first endpoint (the list endpoint) allows for its results to be filtered by specifying querystring
+parameters that map to field names. When calling the API endpoint via an HTTP request, developers can prefix a
+field name with a - (minus) symbol to exlucde, rather than filter by that value. So for example, the URL
+<tt class="docutils literal"><span class="pre">/polls/question.json?-id=1</span></tt> would do this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Submitting a &#8216;POST&#8217; request to the first endpoint creates a new object, populated by the data submitted in
+the POST.</p>
+<p>The second endpoint (the object endpoint) takes a single required argument: the object ID, unless it has a
+parent API, in which case it also requires the ID of the parent object. Submitting a &#8216;PUT&#8217; request to this
+endpoint will update the current object, and a &#8216;DELETE&#8217; request will delete the object.</p>
+<p>APIs are defined almost exactly likt <tt class="docutils literal"><span class="pre">ModelAdmin</span></tt> classes, complete with inlines for foreign key
+relationships.</p>
+<div class="section" id="user-restrictions">
+<h2>User restrictions<a class="headerlink" href="#user-restrictions" title="Permalink to this headline">¶</a></h2>
+<p>By default there are no restrictions placed on endpoints, so it&#8217;s completely up to you to determine whether a
+particular user is permitted to update, delete or even access certain objects. You can limit access easily by
+overriding the <tt class="docutils literal"><span class="pre">get_query_set()</span></tt> function within your API, but it&#8217;s your responsibility to lock down the
+rest.</p>
+<dl class="class">
+<dt id="bambu.api.options.API">
+<em class="property">class </em><tt class="descclassname">bambu.api.options.</tt><tt class="descname">API</tt><big>(</big><em>api_site</em><big>)</big><a class="headerlink" href="#bambu.api.options.API" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines a standard API, where the developer must specify all the URLs that make up each endpoint.
+The class is instantiated by <tt class="docutils literal"><span class="pre">bambu.api.site.register</span></tt>.</p>
+<dl class="attribute">
+<dt id="bambu.api.options.API.form">
+<tt class="descname">form</tt><a class="headerlink" href="#bambu.api.options.API.form" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <tt class="docutils literal"><span class="pre">Form</span></tt> class used to interact with this API</p>
+<p>alias of <tt class="xref py py-class docutils literal"><span class="pre">Form</span></tt></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.API.get_form">
+<tt class="descname">get_form</tt><big>(</big><em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.API.get_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an instance of a <tt class="docutils literal"><span class="pre">Form</span></tt> class that can be used to supply data to the API.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.API.get_urls">
+<tt class="descname">get_urls</tt><big>(</big><big>)</big><a class="headerlink" href="#bambu.api.options.API.get_urls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of URL patterns, where each view is a method of this class.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.API.parent">
+<tt class="descname">parent</tt><em class="property"> = None</em><a class="headerlink" href="#bambu.api.options.API.parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parent <tt class="docutils literal"><span class="pre">API</span></tt> object (default is <tt class="docutils literal"><span class="pre">None</span></tt>)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bambu.api.options.ModelAPI">
+<em class="property">class </em><tt class="descclassname">bambu.api.options.</tt><tt class="descname">ModelAPI</tt><big>(</big><em>model</em>, <em>api_site</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines an API that derives its endpoints&#8217; URLs and functionality from a particular Django model.
+Like <tt class="docutils literal"><span class="pre">API</span></tt>, it&#8217;s instantiated by <tt class="docutils literal"><span class="pre">bambu.api.site.register</span></tt>.</p>
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.add_field_to_exclude_filter">
+<tt class="descname">add_field_to_exclude_filter</tt><big>(</big><em>queryset</em>, <em>field</em>, <em>value</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.add_field_to_exclude_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Excludes rows from a query where the value of the <tt class="docutils literal"><span class="pre">field</span></tt> column is set to that of <tt class="docutils literal"><span class="pre">value</span></tt>.
+If <tt class="docutils literal"><span class="pre">value</span></tt> is a list, each row wherein <tt class="docutils literal"><span class="pre">field</span></tt> contains a value found in the <tt class="docutils literal"><span class="pre">value</span></tt> list
+is excluded.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.add_field_to_include_filter">
+<tt class="descname">add_field_to_include_filter</tt><big>(</big><em>queryset</em>, <em>field</em>, <em>value</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.add_field_to_include_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters a queryset where the value of the <tt class="docutils literal"><span class="pre">field</span></tt> column is set to that of <tt class="docutils literal"><span class="pre">value</span></tt>.
+If <tt class="docutils literal"><span class="pre">value</span></tt> is a list, the query filters out any row where <tt class="docutils literal"><span class="pre">field</span></tt> contains a value
+found within the <tt class="docutils literal"><span class="pre">value</span></tt> list.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.allowed_formats">
+<tt class="descname">allowed_formats</tt><em class="property"> = ('xml', 'json')</em><a class="headerlink" href="#bambu.api.options.ModelAPI.allowed_formats" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of permitted data formats</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.allowed_methods">
+<tt class="descname">allowed_methods</tt><em class="property"> = ('GET', 'POST', 'PUT', 'DELETE')</em><a class="headerlink" href="#bambu.api.options.ModelAPI.allowed_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of permitted HTTP verbs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.example_list_response">
+<tt class="descname">example_list_response</tt><big>(</big><em>count=3</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.example_list_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a list of sample dictionaries by calling <tt class="docutils literal"><span class="pre">example_object</span></tt> <tt class="docutils literal"><span class="pre">count</span></tt> number of times</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.example_object">
+<tt class="descname">example_object</tt><big>(</big><em>index=0</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.example_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a dictionary of sample data used for documentation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.example_object_response">
+<tt class="descname">example_object_response</tt><big>(</big><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.example_object_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alias for <tt class="docutils literal"><span class="pre">example_object</span></tt></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.exclude">
+<tt class="descname">exclude</tt><em class="property"> = ()</em><a class="headerlink" href="#bambu.api.options.ModelAPI.exclude" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple of field names not to expose to the API consumer</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.fields">
+<tt class="descname">fields</tt><em class="property"> = ()</em><a class="headerlink" href="#bambu.api.options.ModelAPI.fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple of field names to expose to the API consumer</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.formfield_for_choice_field">
+<tt class="descname">formfield_for_choice_field</tt><big>(</big><em>db_field</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.formfield_for_choice_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Works in the same way as <tt class="docutils literal"><span class="pre">django.contrib.admin.ModelAdmin</span></tt> instances.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.formfield_for_dbfield">
+<tt class="descname">formfield_for_dbfield</tt><big>(</big><em>db_field</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.formfield_for_dbfield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Works in the same way as <tt class="docutils literal"><span class="pre">django.contrib.admin.ModelAdmin</span></tt> instances.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.formfield_for_foreignkey">
+<tt class="descname">formfield_for_foreignkey</tt><big>(</big><em>db_field</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.formfield_for_foreignkey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Works in the same way as <tt class="docutils literal"><span class="pre">django.contrib.admin.ModelAdmin</span></tt> instances.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.formfield_for_manytomany">
+<tt class="descname">formfield_for_manytomany</tt><big>(</big><em>db_field</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.formfield_for_manytomany" title="Permalink to this definition">¶</a></dt>
+<dd><p>Works in the same way as <tt class="docutils literal"><span class="pre">django.contrib.admin.ModelAdmin</span></tt> instances.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.get_object">
+<tt class="descname">get_object</tt><big>(</big><em>request</em>, <em>object_id</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.get_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a single object by ID, with the specified kwargs also added to the query. Kwargs are most
+commonly specified where the API is a child of another.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.get_query_set">
+<tt class="descname">get_query_set</tt><big>(</big><em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.get_query_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the API&#8217;s model manager queryset using the specified kwargs. Override this function
+to limit the results returned (ie: only showing data relating to the authenticated user)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.get_urls">
+<tt class="descname">get_urls</tt><big>(</big><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.get_urls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically creates URL patterns for the model the class is registered to, and then runs
+through each <tt class="docutils literal"><span class="pre">ModelInline</span></tt> specified in <tt class="docutils literal"><span class="pre">inlines</span></tt> to add its URL patterns to this list.</p>
+<p>It automatically provides basic descriptions for each argument, and creates required arguments
+for each inline API. For example, the 1 in the URL <tt class="docutils literal"><span class="pre">/api/polls/question/1/choices.json</span></tt> is a
+required argument for <tt class="docutils literal"><span class="pre">ChoiceInline.get_query_set()</span></tt>. The relationship between the <tt class="docutils literal"><span class="pre">Choice</span></tt>
+and <tt class="docutils literal"><span class="pre">Question</span></tt> models is automatically discovered and the correct name given to the argument.
+For now, the argument is always considered to be an integer (the primary key of the parent
+object).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.inlines">
+<tt class="descname">inlines</tt><em class="property"> = []</em><a class="headerlink" href="#bambu.api.options.ModelAPI.inlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of classes deriving from <tt class="docutils literal"><span class="pre">ModelInline</span></tt> that specify child models in foreign key relationships</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.list_allowed_methods">
+<tt class="descname">list_allowed_methods</tt><a class="headerlink" href="#bambu.api.options.ModelAPI.list_allowed_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the allowed HTTP verbs for object list endpoints</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.list_view">
+<tt class="descname">list_view</tt><big>(</big><em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.list_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main view for the first (list) endpoint. This typically accepts the &#8216;GET&#8217; and &#8216;POST&#8217;
+HTTP verbs.</p>
+<p>Where &#8216;GET&#8217; is the verb, a queryset is generated by comgining the specified kwargs with the
+querystring, and a list of matching objects is returned.</p>
+<p>Where &#8216;PUT&#8217; is the verb, a <tt class="docutils literal"><span class="pre">Form</span></tt> class is instantiated and the data from the POST added to it.
+The form is saved, and if successful, the saved object is returned. If not, an <tt class="docutils literal"><span class="pre">APIException</span></tt>
+is raised, with the descriptions of the offending fields&#8217; validation exceptions contained within.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.object_allowed_methods">
+<tt class="descname">object_allowed_methods</tt><a class="headerlink" href="#bambu.api.options.ModelAPI.object_allowed_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the allowed HTTP verbs for single object endpoints</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.object_view">
+<tt class="descname">object_view</tt><big>(</big><em>request</em>, <em>object_id</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.object_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>The view for the second (object) endpoint, wherein a &#8216;GET&#8217; request returns an object matching the
+given ID and kwargs, a &#8216;PUT&#8217; updates the object and a &#8216;DELETE&#8217; removes it.</p>
+<p>When a &#8216;PUT&#8217; request is given, the values of the posted data are given to a newly-instantiated
+<tt class="docutils literal"><span class="pre">Form</span></tt>. If the data is correct, the updated object is returned. If invalid, an <tt class="docutils literal"><span class="pre">APIException</span></tt> is
+raised, with the descriptions of the offending fields&#8217; validation exceptions contained within.</p>
+<p>When a &#8216;DELETE&#8217; request is given and the operation successful, the value &#8216;OK&#8217; is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.prepare_initial_data">
+<tt class="descname">prepare_initial_data</tt><big>(</big><em>form_class</em>, <em>obj=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.prepare_initial_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populates the model&#8217;s form with data from the specified object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.prepare_output_data">
+<tt class="descname">prepare_output_data</tt><big>(</big><em>request</em>, <em>obj</em>, <em>max_detail_level=1</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.prepare_output_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform the data from a <tt class="docutils literal"><span class="pre">Model</span></tt> instance found by <tt class="docutils literal"><span class="pre">get_query_set()</span></tt> into a dict so it
+can be serialised</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bambu.api.options.ModelAPI.readonly_fields">
+<tt class="descname">readonly_fields</tt><em class="property"> = ()</em><a class="headerlink" href="#bambu.api.options.ModelAPI.readonly_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple of fieldnames whose data cannot be modified by API consumers</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.save_form">
+<tt class="descname">save_form</tt><big>(</big><em>request</em>, <em>form</em>, <em>obj=None</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.save_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the data from the <tt class="docutils literal"><span class="pre">Form</span></tt> instance in memory, but not to the database</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bambu.api.options.ModelAPI.save_object">
+<tt class="descname">save_object</tt><big>(</big><em>request</em>, <em>obj</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelAPI.save_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the data from the object to the database</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bambu.api.options.ModelInline">
+<em class="property">class </em><tt class="descclassname">bambu.api.options.</tt><tt class="descname">ModelInline</tt><big>(</big><em>model</em>, <em>parent</em>, <em>rel_field</em>, <em>rel_name</em>, <em>api_site</em><big>)</big><a class="headerlink" href="#bambu.api.options.ModelInline" title="Permalink to this definition">¶</a></dt>
+<dd><p>A child API. This does not need to be registered with an API site; instead it should be referenced in the
+<tt class="docutils literal"><span class="pre">inlines</span></tt> property of the parent <tt class="docutils literal"><span class="pre">ModelAPI</span></tt> class.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Defining and registering endpoints</a><ul>
+<li><a class="reference internal" href="#user-restrictions">User restrictions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Bambu API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="settings.html"
+                        title="next chapter">Settings</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/options.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="settings.html" title="Settings"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Bambu API"
+             >previous</a> |</li>
+        <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Steadman.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

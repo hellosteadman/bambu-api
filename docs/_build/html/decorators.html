@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Decorators &mdash; Bambu API 0.5.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bambu API 0.5.2 documentation" href="index.html" />
+    <link rel="next" title="Exceptions" href="exceptions.html" />
+    <link rel="prev" title="Bambu API" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="Exceptions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Bambu API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-bambu.api.decorators">
+<span id="decorators"></span><h1>Decorators<a class="headerlink" href="#module-bambu.api.decorators" title="Permalink to this headline">¶</a></h1>
+<p>Decorators allow certain functions within an API endpoint to be described
+for third-party developers.</p>
+<dl class="function">
+<dt id="bambu.api.decorators.argument">
+<tt class="descclassname">bambu.api.decorators.</tt><tt class="descname">argument</tt><big>(</big><em>name</em>, <em>type='str'</em>, <em>description=''</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.decorators.argument" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the argument</li>
+<li><strong>type</strong> &#8211; The type of the argument (default is <tt class="docutils literal"><span class="pre">str</span></tt>)</li>
+<li><strong>description</strong> &#8211; The type of the argument (default is an empty string)</li>
+<li><strong>required</strong> &#8211; This argument is required by the endpoint (default is <tt class="docutils literal"><span class="pre">True</span></tt>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This decorator defines an API argument in order that in can be
+automatically added to the HTML documentation for the endpoint.</p>
+<p>When the keyword argument <tt class="docutils literal"><span class="pre">required</span></tt> is set to <tt class="docutils literal"><span class="pre">True</span></tt> (by default), that
+argument&#8217;s value must be specified in the path of the endpoint call. This is
+usually reserved for referring to an object by ID, as in the example
+<tt class="docutils literal"><span class="pre">/polls/question/1.json</span></tt>, with <tt class="docutils literal"><span class="pre">1</span></tt> being the required parameter.</p>
+<p>When the keyword argument <tt class="docutils literal"><span class="pre">required</span></tt> is set to <tt class="docutils literal"><span class="pre">False</span></tt>, that argument&#8217;s
+value must be specified as part of the query string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bambu.api.decorators.returns">
+<tt class="descclassname">bambu.api.decorators.</tt><tt class="descname">returns</tt><big>(</big><em>name_or_dict</em>, <em>type='str'</em>, <em>description=''</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.decorators.returns" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name_or_dict</strong> &#8211; The name of a key or a full dictionary mapping keys to types and descriptions</li>
+<li><strong>type</strong> &#8211; The type of value associated with the key (when <tt class="docutils literal"><span class="pre">name_or_dict</span></tt> is a string)</li>
+<li><strong>description</strong> &#8211; the description of the value (when <tt class="docutils literal"><span class="pre">name_or_dict</span></tt> is a string)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This decorator allows you to specify what data is returned by a function within an API endpoint. It&#8217;s
+used to build the HTML documentation for each endpoint. The returned data for an endpoint is assumed to
+be a dictionary (or list of dictionaries), so you use the <tt class="docutils literal"><span class="pre">&#64;returns</span></tt> decorator to specify what each
+key in that dictionary provides.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Bambu API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="exceptions.html"
+                        title="next chapter">Exceptions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/decorators.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="Exceptions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Bambu API"
+             >previous</a> |</li>
+        <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Steadman.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

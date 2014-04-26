@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bambu API &mdash; Bambu API 0.5.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.5.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Bambu API 0.5.2 documentation" href="#" />
+    <link rel="next" title="Defining and registering endpoints" href="options.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="options.html" title="Defining and registering endpoints"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="bambu-api">
+<h1>Bambu API<a class="headerlink" href="#bambu-api" title="Permalink to this headline">¶</a></h1>
+<p>Quickly expose your models to a JSON or XML API, authenticated via HTTP
+or OAuth.</p>
+<div class="section" id="about-bambu-api">
+<h2>About Bambu API<a class="headerlink" href="#about-bambu-api" title="Permalink to this headline">¶</a></h2>
+<p>This package allows you to easily expose Django models to RESTful
+endpoints which can send data in XML or JSON format.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Install the package via Pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install bambu-api
+</pre></div>
+</div>
+<p>Add it to your <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> list:</p>
+<div class="highlight-python"><div class="highlight"><pre>INSTALLED_APPS = (
+    ...
+    &#39;bambu.api&#39;
+)
+</pre></div>
+</div>
+<p>Add <tt class="docutils literal"><span class="pre">bambu.api.urls</span></tt> to your URLconf:</p>
+<div class="highlight-python"><div class="highlight"><pre>urlpatterns = patterns(&#39;&#39;,
+    ...
+    url(r&#39;^&#39;, include(&#39;bambu.api.urls&#39;)),
+)
+</pre></div>
+</div>
+<p>The prefix should be kept blank, as the package exposes two main URL
+stems: <tt class="docutils literal"><span class="pre">/api/</span></tt>, wherein the RESTful endpoints live, and <tt class="docutils literal"><span class="pre">/docs/</span></tt>
+where auto-generated documentation for each endpoint is found.</p>
+</div>
+<div class="section" id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<p>You define API endpoints like Django admins, and register them in a
+similar way.</p>
+<p>Teka the Django &#8216;polls&#8217; app as an example. Within the polls directory,
+you&#8217;d create a file called api.py. A simple API endpoint would be
+defined like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bambu</span> <span class="kn">import</span> <span class="n">api</span>
+<span class="kn">from</span> <span class="nn">myproject.polls.models</span> <span class="kn">import</span> <span class="n">Question</span>
+
+<span class="k">class</span> <span class="nc">QuestionAPI</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">ModelAPI</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">QuestionAPI</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This registers the <tt class="docutils literal"><span class="pre">QuestionAPI</span></tt> endpoint for the <tt class="docutils literal"><span class="pre">Question</span></tt> model.
+The endpoint is then accessible at <tt class="docutils literal"><span class="pre">/api/polls/question.json</span></tt>.</p>
+</div>
+<div class="section" id="questions-or-suggestions">
+<h2>Questions or suggestions?<a class="headerlink" href="#questions-or-suggestions" title="Permalink to this headline">¶</a></h2>
+<p>Find me on Twitter (&#64;iamsteadman) or <a class="reference external" href="http://steadman.io/">visit my blog</a>.</p>
+</div>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="options.html">Defining and registering endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="options.html#user-restrictions">User restrictions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#redis-specific-settings">Redis-specific settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="throttling.html">Throttling requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="internal.html">Internal requests</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="decorators.html">Decorators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-bambu.api.managers">Managers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bambu API</a><ul>
+<li><a class="reference internal" href="#about-bambu-api">About Bambu API</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#basic-usage">Basic usage</a></li>
+<li><a class="reference internal" href="#questions-or-suggestions">Questions or suggestions?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#api-reference">API reference</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="options.html"
+                        title="next chapter">Defining and registering endpoints</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="options.html" title="Defining and registering endpoints"
+             >next</a> |</li>
+        <li><a href="#">Bambu API 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Steadman.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
