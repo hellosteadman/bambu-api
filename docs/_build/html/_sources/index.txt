@@ -73,12 +73,14 @@ Contents
 ========
 
 .. toctree::
-   maxdepth: 2
+   :maxdepth: 2
    
    options
    settings
    throttling
    internal
+   transformers
+   serialisers
 
 API reference
 =============
@@ -91,6 +93,9 @@ API reference
    helpers
    menus
    models
+   response
+   sites
+   urls
 
 Indices and tables
 ==================
