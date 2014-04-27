@@ -1,5 +1,5 @@
 Decorators
 ==========
 
-.. automodule:: bambu.api.decorators
+.. automodule:: bambu_api.decorators
    :members:

@@ -1,5 +1,5 @@
 Serialising data
 ================
 
-.. automodule:: bambu.api.serialisers
+.. automodule:: bambu_api.serialisers
    :members:

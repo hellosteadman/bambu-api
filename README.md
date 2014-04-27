@@ -7,6 +7,12 @@ Quickly expose your models to a JSON or XML API, authenticated via HTTP or OAuth
 This package allows you to easily expose Django models to RESTful endpoints which can
 send data in XML or JSON format.
 
+## About Bambu Tools 2.0
+
+This is part of a toolset called Bambu Tools. It's being moved from a namespace of `bambu` to its own
+'root-level' package, along with all the other tools in the set. If you're upgrading from a version prior
+to 2.0, please make sure to update your code to use `bambu_api` rather than `bambu.api`.
+
 ## Installation
 
 Install the package via Pip:
@@ -20,16 +26,16 @@ Add it to your `INSTALLED_APPS` list:
 ```python
 INSTALLED_APPS = (
     ...
-    'bambu.api'
+    'bambu_api'
 )
 ```
 
-Add `bambu.api.urls` to your URLconf:
+Add `bambu_api.urls` to your URLconf:
 
 ```python
 urlpatterns = patterns('',
     ...
-    url(r'^', include('bambu.api.urls')),
+    url(r'^', include('bambu_api.urls')),
 )
 ```
 
@@ -45,19 +51,19 @@ Teka the Django 'polls' app as an example. Within the polls directory, you'd
 create a file called api.py. A simple API endpoint would be defined like this:
 
 ```python
-from bambu import api
+from bambu_api import ModelAPI, site
 from myproject.polls.models import Question
 
-class QuestionAPI(api.ModelAPI):
+class QuestionAPI(ModelAPI):
     pass
 
-api.site.register(Question, QuestionAPI)
+site.register(Question, QuestionAPI)
 ```
 
 This registers the `QuestionAPI` endpoint for the `Question` model. The endpoint
 is then accessible at `/api/polls/question.json`.
 
-## Full documentation
+## Documentation
 
 Full documentation can be found at [ReadTheDocs](http://bambu-api.readthedocs.org/).
 

@@ -1,5 +1,5 @@
 Internal requests
 =================
 
-.. automodule:: bambu.api.requests
+.. automodule:: bambu_api.requests
    :members:

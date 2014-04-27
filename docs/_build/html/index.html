@@ -57,6 +57,14 @@ or OAuth.</p>
 <p>This package allows you to easily expose Django models to RESTful
 endpoints which can send data in XML or JSON format.</p>
 </div>
+<div class="section" id="about-bambu-tools-2-0">
+<h2>About Bambu Tools 2.0<a class="headerlink" href="#about-bambu-tools-2-0" title="Permalink to this headline">¶</a></h2>
+<p>This is part of a toolset called Bambu Tools. It&#8217;s being moved from a
+namespace of <tt class="docutils literal"><span class="pre">bambu</span></tt> to its own &#8216;root-level&#8217; package, along with all
+the other tools in the set. If you&#8217;re upgrading from a version prior to
+2.0, please make sure to update your code to use <tt class="docutils literal"><span class="pre">bambu_api</span></tt> rather
+than <tt class="docutils literal"><span class="pre">bambu.api</span></tt>.</p>
+</div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Install the package via Pip:</p>
@@ -66,14 +74,14 @@ endpoints which can send data in XML or JSON format.</p>
 <p>Add it to your <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> list:</p>
 <div class="highlight-python"><div class="highlight"><pre>INSTALLED_APPS = (
     ...
-    &#39;bambu.api&#39;
+    &#39;bambu_api&#39;
 )
 </pre></div>
 </div>
-<p>Add <tt class="docutils literal"><span class="pre">bambu.api.urls</span></tt> to your URLconf:</p>
+<p>Add <tt class="docutils literal"><span class="pre">bambu_api.urls</span></tt> to your URLconf:</p>
 <div class="highlight-python"><div class="highlight"><pre>urlpatterns = patterns(&#39;&#39;,
     ...
-    url(r&#39;^&#39;, include(&#39;bambu.api.urls&#39;)),
+    url(r&#39;^&#39;, include(&#39;bambu_api.urls&#39;)),
 )
 </pre></div>
 </div>
@@ -88,13 +96,13 @@ similar way.</p>
 <p>Teka the Django &#8216;polls&#8217; app as an example. Within the polls directory,
 you&#8217;d create a file called api.py. A simple API endpoint would be
 defined like this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bambu</span> <span class="kn">import</span> <span class="n">api</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bambu_api</span> <span class="kn">import</span> <span class="n">ModelAPI</span><span class="p">,</span> <span class="n">site</span>
 <span class="kn">from</span> <span class="nn">myproject.polls.models</span> <span class="kn">import</span> <span class="n">Question</span>
 
-<span class="k">class</span> <span class="nc">QuestionAPI</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">ModelAPI</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">QuestionAPI</span><span class="p">(</span><span class="n">ModelAPI</span><span class="p">):</span>
     <span class="k">pass</span>
 
-<span class="n">api</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">QuestionAPI</span><span class="p">)</span>
+<span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">QuestionAPI</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This registers the <tt class="docutils literal"><span class="pre">QuestionAPI</span></tt> endpoint for the <tt class="docutils literal"><span class="pre">Question</span></tt> model.
@@ -121,6 +129,11 @@ The endpoint is then accessible at <tt class="docutils literal"><span class="pre
 <li class="toctree-l1"><a class="reference internal" href="internal.html">Internal requests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transformers.html">Making data ready for serialisation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="serialisers.html">Serialising data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#module-bambu_api.auth.http">Built-in providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#module-bambu_api.auth.decorators">Decorators</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -133,7 +146,7 @@ The endpoint is then accessible at <tt class="docutils literal"><span class="pre
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="menus.html">Menus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-bambu.api.managers">Managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html#module-bambu_api.managers">Managers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="response.html">Responses</a></li>
@@ -161,6 +174,7 @@ The endpoint is then accessible at <tt class="docutils literal"><span class="pre
   <ul>
 <li><a class="reference internal" href="#">Bambu API</a><ul>
 <li><a class="reference internal" href="#about-bambu-api">About Bambu API</a></li>
+<li><a class="reference internal" href="#about-bambu-tools-2-0">About Bambu Tools 2.0</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#basic-usage">Basic usage</a></li>
 <li><a class="reference internal" href="#questions-or-suggestions">Questions or suggestions?</a></li>

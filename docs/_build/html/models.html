@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Bambu API 0.5.2 documentation" href="index.html" />
+    <link rel="next" title="Responses" href="response.html" />
     <link rel="prev" title="Menus" href="menus.html" /> 
   </head>
   <body>
@@ -37,6 +38,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="response.html" title="Responses"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
           <a href="menus.html" title="Menus"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
@@ -48,35 +52,35 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="module-bambu.api.models">
-<span id="models"></span><h1>Models<a class="headerlink" href="#module-bambu.api.models" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-bambu_api.models">
+<span id="models"></span><h1>Models<a class="headerlink" href="#module-bambu_api.models" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="bambu.api.models.App">
-<em class="property">class </em><tt class="descclassname">bambu.api.models.</tt><tt class="descname">App</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.models.App" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.models.App">
+<em class="property">class </em><tt class="descclassname">bambu_api.models.</tt><tt class="descname">App</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu_api.models.App" title="Permalink to this definition">¶</a></dt>
 <dd><p>App(id, admin_id, name, description, key, secret, status, callback_url, deployment, http_login, http_signup)</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="bambu.api.models.Nonce">
-<em class="property">class </em><tt class="descclassname">bambu.api.models.</tt><tt class="descname">Nonce</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.models.Nonce" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.models.Nonce">
+<em class="property">class </em><tt class="descclassname">bambu_api.models.</tt><tt class="descname">Nonce</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu_api.models.Nonce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nonce(id, token_key, consumer_key, key)</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="bambu.api.models.RequestBatch">
-<em class="property">class </em><tt class="descclassname">bambu.api.models.</tt><tt class="descname">RequestBatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.models.RequestBatch" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.models.RequestBatch">
+<em class="property">class </em><tt class="descclassname">bambu_api.models.</tt><tt class="descname">RequestBatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu_api.models.RequestBatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>RequestBatch(id, app_id, timestamp, count)</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="bambu.api.models.Token">
-<em class="property">class </em><tt class="descclassname">bambu.api.models.</tt><tt class="descname">Token</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.models.Token" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.models.Token">
+<em class="property">class </em><tt class="descclassname">bambu_api.models.</tt><tt class="descname">Token</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu_api.models.Token" title="Permalink to this definition">¶</a></dt>
 <dd><p>Token(id, key, secret, verifier, token_type, timestamp, approved, user_id, app_id, callback, callback_confirmed)</p>
 </dd></dl>
 
-<div class="section" id="module-bambu.api.managers">
-<span id="managers"></span><h2>Managers<a class="headerlink" href="#module-bambu.api.managers" title="Permalink to this headline">¶</a></h2>
-<p>Manager for the <tt class="docutils literal"><span class="pre">bambu.api.models.Task</span></tt> model.</p>
+<div class="section" id="module-bambu_api.managers">
+<span id="managers"></span><h2>Managers<a class="headerlink" href="#module-bambu_api.managers" title="Permalink to this headline">¶</a></h2>
+<p>Manager for the <tt class="docutils literal"><span class="pre">bambu_api.models.Task</span></tt> model.</p>
 </div>
 </div>
 
@@ -89,7 +93,7 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Models</a><ul>
-<li><a class="reference internal" href="#module-bambu.api.managers">Managers</a></li>
+<li><a class="reference internal" href="#module-bambu_api.managers">Managers</a></li>
 </ul>
 </li>
 </ul>
@@ -97,6 +101,9 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="menus.html"
                         title="previous chapter">Menus</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="response.html"
+                        title="next chapter">Responses</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/models.txt"
@@ -128,6 +135,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="response.html" title="Responses"
+             >next</a> |</li>
         <li class="right" >
           <a href="menus.html" title="Menus"
              >previous</a> |</li>

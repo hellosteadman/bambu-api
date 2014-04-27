@@ -1,11 +1,11 @@
 Models
 ======
 
-.. automodule:: bambu.api.models
+.. automodule:: bambu_api.models
    :members:
 
 Managers
 --------
 
-.. automodule:: bambu.api.managers
+.. automodule:: bambu_api.managers
    :members:

@@ -1,5 +1,5 @@
 Helper functions
 ================
 
-.. automodule:: bambu.api.helpers
+.. automodule:: bambu_api.helpers
    :members:

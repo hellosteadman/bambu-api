@@ -1,5 +1,5 @@
 Responses
 =========
 
-.. automodule:: bambu.api.response
+.. automodule:: bambu_api.response
    :members:

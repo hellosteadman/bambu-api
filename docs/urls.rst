@@ -1,5 +1,5 @@
 URLconf
 =======
 
-.. automodule:: bambu.api.urls
+.. automodule:: bambu_api.urls
    :members:

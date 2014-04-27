@@ -1,5 +1,5 @@
 Exceptions
 ==========
 
-.. automodule:: bambu.api.exceptions
+.. automodule:: bambu_api.exceptions
    :members:

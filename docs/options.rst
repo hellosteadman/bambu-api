@@ -1,5 +1,5 @@
 Defining and registering endpoints
 ==================================
 
-.. automodule:: bambu.api.options
+.. automodule:: bambu_api.options
    :members:

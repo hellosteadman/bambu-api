@@ -4,7 +4,7 @@ from os import path
 
 setup(
 	name = 'bambu-api',
-	version = '0.5.2',
+	version = '2.0',
 	description = 'Quickly expose your models to a JSON or XML API, authenticated via HTTP or OAuth.',
 	author = 'Steadman',
 	author_email = 'mark@steadman.io',
@@ -15,16 +15,15 @@ setup(
 		'oauth',
 		'oauth2'
 	],
-	namespace_packages = ['bambu'],
 	packages = [
-		'bambu.api',
-		'bambu.api.auth',
-		'bambu.api.migrations',
-		'bambu.api.templatetags',
-		'bambu.api.xml'
+		'bambu_api',
+		'bambu_api.auth',
+		'bambu_api.migrations',
+		'bambu_api.templatetags',
+		'bambu_api.xml'
 	],
 	package_data = {
-		'bambu.api': [
+		'bambu_api': [
 			'templates/api/*.html',
 			'templates/api/apps/*.html',
 			'templates/api/auth/*.html',

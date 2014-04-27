@@ -1,5 +1,5 @@
 Throttling requests
 ===================
 
-.. automodule:: bambu.api.requestlogging
+.. automodule:: bambu_api.requestlogging
    :members:

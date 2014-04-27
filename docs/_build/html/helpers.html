@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Bambu API 0.5.2 documentation" href="index.html" />
+    <link rel="next" title="Menus" href="menus.html" />
     <link rel="prev" title="Exceptions" href="exceptions.html" /> 
   </head>
   <body>
@@ -37,6 +38,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="menus.html" title="Menus"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
           <a href="exceptions.html" title="Exceptions"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Bambu API 0.5.2 documentation</a> &raquo;</li> 
@@ -48,43 +52,43 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="module-bambu.api.helpers">
-<span id="helper-functions"></span><h1>Helper functions<a class="headerlink" href="#module-bambu.api.helpers" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-bambu_api.helpers">
+<span id="helper-functions"></span><h1>Helper functions<a class="headerlink" href="#module-bambu_api.helpers" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="bambu.api.helpers.form_initial_data">
-<tt class="descclassname">bambu.api.helpers.</tt><tt class="descname">form_initial_data</tt><big>(</big><em>form_class</em>, <em>obj=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu.api.helpers.form_initial_data" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.helpers.form_initial_data">
+<tt class="descclassname">bambu_api.helpers.</tt><tt class="descname">form_initial_data</tt><big>(</big><em>form_class</em>, <em>obj=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bambu_api.helpers.form_initial_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a dictionary of data to be passed as &#8216;initial data&#8217; to a form.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="bambu.api.helpers.generate_random_key">
-<tt class="descclassname">bambu.api.helpers.</tt><tt class="descname">generate_random_key</tt><big>(</big><em>length=32</em><big>)</big><a class="headerlink" href="#bambu.api.helpers.generate_random_key" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.helpers.generate_random_key">
+<tt class="descclassname">bambu_api.helpers.</tt><tt class="descname">generate_random_key</tt><big>(</big><em>length=32</em><big>)</big><a class="headerlink" href="#bambu_api.helpers.generate_random_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates a random password for a user. This is purely for display purposes, from within the project&#8217;s
 developers&#8217; section.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="bambu.api.helpers.send_oauth_error">
-<tt class="descclassname">bambu.api.helpers.</tt><tt class="descname">send_oauth_error</tt><big>(</big><em>err</em><big>)</big><a class="headerlink" href="#bambu.api.helpers.send_oauth_error" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.helpers.send_oauth_error">
+<tt class="descclassname">bambu_api.helpers.</tt><tt class="descname">send_oauth_error</tt><big>(</big><em>err</em><big>)</big><a class="headerlink" href="#bambu_api.helpers.send_oauth_error" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send an OAuth error to the HTTP client.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="bambu.api.helpers.trim_indent">
-<tt class="descclassname">bambu.api.helpers.</tt><tt class="descname">trim_indent</tt><big>(</big><em>docstring</em><big>)</big><a class="headerlink" href="#bambu.api.helpers.trim_indent" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.helpers.trim_indent">
+<tt class="descclassname">bambu_api.helpers.</tt><tt class="descname">trim_indent</tt><big>(</big><em>docstring</em><big>)</big><a class="headerlink" href="#bambu_api.helpers.trim_indent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helps in formatting document strings for display within the project&#8217;s developers&#8217; section.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="bambu.api.helpers.wrap_api_function">
-<tt class="descclassname">bambu.api.helpers.</tt><tt class="descname">wrap_api_function</tt><big>(</big><em>site</em>, <em>view</em>, <em>detail_level</em>, <em>allowed_methods</em>, <em>processor</em>, <em>verbose_name=None</em><big>)</big><a class="headerlink" href="#bambu.api.helpers.wrap_api_function" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.helpers.wrap_api_function">
+<tt class="descclassname">bambu_api.helpers.</tt><tt class="descname">wrap_api_function</tt><big>(</big><em>site</em>, <em>view</em>, <em>detail_level</em>, <em>allowed_methods</em>, <em>processor</em>, <em>verbose_name=None</em><big>)</big><a class="headerlink" href="#bambu_api.helpers.wrap_api_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>A decorator which wraps certain functions, so that a number of checks can be run before the function
 is called (ie: checking that the HTTP method is allowed).</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="bambu.api.helpers.wrap_api_page">
-<tt class="descclassname">bambu.api.helpers.</tt><tt class="descname">wrap_api_page</tt><big>(</big><em>site</em>, <em>view</em>, <em>allowed_methods</em><big>)</big><a class="headerlink" href="#bambu.api.helpers.wrap_api_page" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.helpers.wrap_api_page">
+<tt class="descclassname">bambu_api.helpers.</tt><tt class="descname">wrap_api_page</tt><big>(</big><em>site</em>, <em>view</em>, <em>allowed_methods</em><big>)</big><a class="headerlink" href="#bambu_api.helpers.wrap_api_page" title="Permalink to this definition">¶</a></dt>
 <dd><p>A decorator which wraps certain functions, so that a number of checks can be run before the function
 is called (ie: checking that the HTTP method is allowed).</p>
 </dd></dl>
@@ -100,6 +104,9 @@ is called (ie: checking that the HTTP method is allowed).</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="exceptions.html"
                         title="previous chapter">Exceptions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="menus.html"
+                        title="next chapter">Menus</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/helpers.txt"
@@ -131,6 +138,9 @@ is called (ie: checking that the HTTP method is allowed).</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="menus.html" title="Menus"
+             >next</a> |</li>
         <li class="right" >
           <a href="exceptions.html" title="Exceptions"
              >previous</a> |</li>

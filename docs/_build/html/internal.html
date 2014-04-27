@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Bambu API 0.5.2 documentation" href="index.html" />
-    <link rel="next" title="Decorators" href="decorators.html" />
+    <link rel="next" title="Making data ready for serialisation" href="transformers.html" />
     <link rel="prev" title="Throttling requests" href="throttling.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="decorators.html" title="Decorators"
+          <a href="transformers.html" title="Making data ready for serialisation"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="throttling.html" title="Throttling requests"
@@ -52,16 +52,16 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="module-bambu.api.requests">
-<span id="internal-requests"></span><h1>Internal requests<a class="headerlink" href="#module-bambu.api.requests" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-bambu_api.requests">
+<span id="internal-requests"></span><h1>Internal requests<a class="headerlink" href="#module-bambu_api.requests" title="Permalink to this headline">¶</a></h1>
 <p>When developing <a class="reference external" href="https://nymbol.co.uk/">Nymbol</a>, I wanted to bind user-defined HTML templates
 to API calls. This meant that the API functions needed to be called internally to be passed to a
 system that would render the returned data as HTML. In order to reduce the amount of processing time
 and power wasted in converting to and from JSON or XML, I updated Bambu API to handle &#8216;internal&#8217;
 requests by returning the data as a dict (or list of dicts), rather than an HTTP response.</p>
 <dl class="class">
-<dt id="bambu.api.requests.InternalRequest">
-<em class="property">class </em><tt class="descclassname">bambu.api.requests.</tt><tt class="descname">InternalRequest</tt><big>(</big><em>path</em>, <em>params=None</em><big>)</big><a class="headerlink" href="#bambu.api.requests.InternalRequest" title="Permalink to this definition">¶</a></dt>
+<dt id="bambu_api.requests.InternalRequest">
+<em class="property">class </em><tt class="descclassname">bambu_api.requests.</tt><tt class="descname">InternalRequest</tt><big>(</big><em>path</em>, <em>params=None</em><big>)</big><a class="headerlink" href="#bambu_api.requests.InternalRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines an internal request, by mimicking the standard Django <tt class="docutils literal"><span class="pre">HttpRequest</span></tt> class (or
 providing only the properties expected by Bambu API&#8217;s various functions)</p>
 </dd></dl>
@@ -78,8 +78,8 @@ providing only the properties expected by Bambu API&#8217;s various functions)</
   <p class="topless"><a href="throttling.html"
                         title="previous chapter">Throttling requests</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="decorators.html"
-                        title="next chapter">Decorators</a></p>
+  <p class="topless"><a href="transformers.html"
+                        title="next chapter">Making data ready for serialisation</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/internal.txt"
@@ -112,7 +112,7 @@ providing only the properties expected by Bambu API&#8217;s various functions)</
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="decorators.html" title="Decorators"
+          <a href="transformers.html" title="Making data ready for serialisation"
              >next</a> |</li>
         <li class="right" >
           <a href="throttling.html" title="Throttling requests"
