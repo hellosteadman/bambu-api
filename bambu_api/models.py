@@ -10,10 +10,6 @@ from time import time
 
 REQUEST_LOGGER = helpers.get_request_logger()
 
-class CustomTitleString(str):
-    def title(self):
-        return str(self[6:]).title()
-
 class App(models.Model):
 	admin = models.ForeignKey(User, related_name = 'owned_apps')
 	name = models.CharField(max_length = 50)
@@ -77,7 +73,6 @@ class App(models.Model):
 	class Meta:
 		ordering = ('name',)
 		db_table = 'api_app'
-		app_label = CustomTitleString('bambu_api')
 
 class Nonce(models.Model):
 	token_key = models.CharField(max_length = 18)
@@ -89,7 +84,6 @@ class Nonce(models.Model):
 	
 	class Meta:
 	    db_table = 'api_nonce'
-	    app_label = CustomTitleString('bambu_api')
 
 class Token(models.Model):
 	key = models.CharField(max_length = 18)
@@ -170,7 +164,6 @@ class Token(models.Model):
 	
 	class Meta:
 	    db_table = 'api_token'
-	    app_label = CustomTitleString('bambu_api')
 
 class RequestBatch(models.Model):
 	app = models.ForeignKey(App, related_name = 'requests')
@@ -180,4 +173,3 @@ class RequestBatch(models.Model):
 	class Meta:
 		unique_together = ('app', 'timestamp')
 		db_table = 'api_requestbatch'
-		app_label = CustomTitleString('bambu_api')

@@ -12,6 +12,7 @@ from bambu_api.decorators import argument, returns, named
 from django.conf import settings
 from datetime import datetime
 
+default_app_config = 'bambu_api.apps.APIConfig'
 site = APISite()
 
 def autodiscover():
