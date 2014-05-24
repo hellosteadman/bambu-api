@@ -73,6 +73,7 @@ class App(models.Model):
 	class Meta:
 		ordering = ('name',)
 		db_table = 'api_app'
+		app_label = 'API'
 
 class Nonce(models.Model):
 	token_key = models.CharField(max_length = 18)
@@ -84,6 +85,7 @@ class Nonce(models.Model):
 	
 	class Meta:
 	    db_table = 'api_nonce'
+	    app_label = 'API'
 
 class Token(models.Model):
 	key = models.CharField(max_length = 18)
@@ -164,6 +166,7 @@ class Token(models.Model):
 	
 	class Meta:
 	    db_table = 'api_token'
+	    app_label = 'API'
 
 class RequestBatch(models.Model):
 	app = models.ForeignKey(App, related_name = 'requests')
@@ -173,3 +176,4 @@ class RequestBatch(models.Model):
 	class Meta:
 		unique_together = ('app', 'timestamp')
 		db_table = 'api_requestbatch'
+		app_label = 'API'

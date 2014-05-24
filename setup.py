@@ -4,7 +4,7 @@ from os import path
 
 setup(
 	name = 'bambu-api',
-	version = '2.0',
+	version = '2.0.1',
 	description = 'Quickly expose your models to a JSON or XML API, authenticated via HTTP or OAuth.',
 	author = 'Steadman',
 	author_email = 'mark@steadman.io',

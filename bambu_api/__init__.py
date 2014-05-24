@@ -3,7 +3,7 @@ Quickly expose your models to a JSON or XML API, authenticated via HTTP or
 OAuth.
 """
 
-__version__ = '0.5.2'
+__version__ = '2.0.1'
 
 from bambu_api.options import *
 from bambu_api.sites import APISite
