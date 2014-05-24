@@ -22,7 +22,7 @@ class Migration(SchemaMigration):
             ('http_login', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('http_signup', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal(u'bambu_api', ['App'])
+        db.send_create_signal('bambu_api', ['App'])
 
         # Adding model 'Nonce'
         db.create_table('api_nonce', (
@@ -31,7 +31,7 @@ class Migration(SchemaMigration):
             ('consumer_key', self.gf('django.db.models.fields.CharField')(max_length=32)),
             ('key', self.gf('django.db.models.fields.CharField')(max_length=255)),
         ))
-        db.send_create_signal(u'bambu_api', ['Nonce'])
+        db.send_create_signal('bambu_api', ['Nonce'])
 
         # Adding model 'Token'
         db.create_table('api_token', (
@@ -40,14 +40,14 @@ class Migration(SchemaMigration):
             ('secret', self.gf('django.db.models.fields.CharField')(max_length=32)),
             ('verifier', self.gf('django.db.models.fields.CharField')(max_length=10)),
             ('token_type', self.gf('django.db.models.fields.PositiveIntegerField')()),
-            ('timestamp', self.gf('django.db.models.fields.PositiveIntegerField')(default=1400379175L)),
+            ('timestamp', self.gf('django.db.models.fields.PositiveIntegerField')(default=1400931659L)),
             ('approved', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='tokens', null=True, to=orm['auth.User'])),
             ('app', self.gf('django.db.models.fields.related.ForeignKey')(related_name='tokens', to=orm['bambu_api.App'])),
             ('callback', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
             ('callback_confirmed', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
-        db.send_create_signal(u'bambu_api', ['Token'])
+        db.send_create_signal('bambu_api', ['Token'])
 
         # Adding model 'RequestBatch'
         db.create_table('api_requestbatch', (
@@ -56,7 +56,7 @@ class Migration(SchemaMigration):
             ('timestamp', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
             ('count', self.gf('django.db.models.fields.PositiveIntegerField')(default=1)),
         ))
-        db.send_create_signal(u'bambu_api', ['RequestBatch'])
+        db.send_create_signal('bambu_api', ['RequestBatch'])
 
         # Adding unique constraint on 'RequestBatch', fields ['app', 'timestamp']
         db.create_unique('api_requestbatch', ['app_id', 'timestamp'])
@@ -109,7 +109,7 @@ class Migration(SchemaMigration):
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
-        u'bambu_api.app': {
+        'bambu_api.app': {
             'Meta': {'ordering': "('name',)", 'object_name': 'App', 'db_table': "'api_app'"},
             'admin': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'owned_apps'", 'to': u"orm['auth.User']"}),
             'callback_url': ('django.db.models.fields.URLField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
@@ -123,30 +123,30 @@ class Migration(SchemaMigration):
             'secret': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
             'status': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'})
         },
-        u'bambu_api.nonce': {
+        'bambu_api.nonce': {
             'Meta': {'object_name': 'Nonce', 'db_table': "'api_nonce'"},
             'consumer_key': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'key': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'token_key': ('django.db.models.fields.CharField', [], {'max_length': '18'})
         },
-        u'bambu_api.requestbatch': {
+        'bambu_api.requestbatch': {
             'Meta': {'unique_together': "(('app', 'timestamp'),)", 'object_name': 'RequestBatch', 'db_table': "'api_requestbatch'"},
-            'app': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'requests'", 'to': u"orm['bambu_api.App']"}),
+            'app': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'requests'", 'to': "orm['bambu_api.App']"}),
             'count': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'timestamp': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'})
         },
-        u'bambu_api.token': {
+        'bambu_api.token': {
             'Meta': {'object_name': 'Token', 'db_table': "'api_token'"},
-            'app': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tokens'", 'to': u"orm['bambu_api.App']"}),
+            'app': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'tokens'", 'to': "orm['bambu_api.App']"}),
             'approved': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'callback': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'callback_confirmed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'key': ('django.db.models.fields.CharField', [], {'max_length': '18'}),
             'secret': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
-            'timestamp': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1400379175L'}),
+            'timestamp': ('django.db.models.fields.PositiveIntegerField', [], {'default': '1400931659L'}),
             'token_type': ('django.db.models.fields.PositiveIntegerField', [], {}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'tokens'", 'null': 'True', 'to': u"orm['auth.User']"}),
             'verifier': ('django.db.models.fields.CharField', [], {'max_length': '10'})
